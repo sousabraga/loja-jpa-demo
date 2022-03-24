@@ -14,12 +14,14 @@ public class CadastroProduto {
 	private static final String PERSISTENCE_UNIT_NAME = "loja";
 
 	public static void main(String[] args) {
-		Produto celular = new Produto("Xiaomi", "Muito legal", BigDecimal.valueOf(800), Categoria.CELULARES);
+		Categoria categoria = new Categoria("CELULARES");
+		Produto celular = new Produto("Xiaomi", "Muito legal", BigDecimal.valueOf(800), categoria);
 		EntityManagerFactory EntityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager entityManager = EntityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();
 		
+		entityManager.persist(categoria);
 		entityManager.persist(celular);
 		
 		entityManager.getTransaction().commit();
